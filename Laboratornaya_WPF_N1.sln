@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laboratornaya_WPF_N1", "Laboratornaya_WPF_N1.csproj", "{3D1F667B-E8CA-4A23-8869-C67860731696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWPFNavigate", "..\SampleWPFNavigate\SampleWPFNavigate.csproj", "{FAF1F87C-1C2A-42A0-9DC3-7C6ED73CB420}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D1F667B-E8CA-4A23-8869-C67860731696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1F667B-E8CA-4A23-8869-C67860731696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1F667B-E8CA-4A23-8869-C67860731696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1F667B-E8CA-4A23-8869-C67860731696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF1F87C-1C2A-42A0-9DC3-7C6ED73CB420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF1F87C-1C2A-42A0-9DC3-7C6ED73CB420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF1F87C-1C2A-42A0-9DC3-7C6ED73CB420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF1F87C-1C2A-42A0-9DC3-7C6ED73CB420}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E284FEC2-EE68-48CD-80AD-6F3BF15FD963}
+	EndGlobalSection
+EndGlobal

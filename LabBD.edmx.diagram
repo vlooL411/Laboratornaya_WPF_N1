@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0de4d41e1ff140449eb63d9d6c04619c" Name="Diagram1">
+        <EntityTypeShape EntityType="LaboratornayN1Model.Lid" Width="1.5" PointX="14" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratornayN1Model.Rate" Width="1.5" PointX="9.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratornayN1Model.User" Width="1.5" PointX="11.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="LaboratornayN1Model.FK_Lids_Rate" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratornayN1Model.FK_Lids_User" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratornayN1Model.FK_User_Rate" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

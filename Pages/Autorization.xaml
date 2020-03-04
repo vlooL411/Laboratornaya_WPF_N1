@@ -1,0 +1,30 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      x:Class="Laboratornaya_WPF_N1.Pages.Autorization"
+	  mc:Ignorable="d" 
+      d:DesignHeight="220" d:DesignWidth="500"
+      Title="Авторизация">
+	<Viewbox>
+		<Grid Margin="25 20">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1.5*"/>
+				<ColumnDefinition Width="3*" MinWidth="150"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Label Content="Авторизация" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+			<Label Content="Имя пользователя: " Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<TextBox x:Name="Username" MaxLines="1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+			<Label Content="Пароль: " Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+			<PasswordBox x:Name="Password" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+			<Button Content="Войти" x:Name="BtnAutorization" Click="Autorization_Click" Margin="0 6 0 0" Padding="6 0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			<Button Content="Регистрация" x:Name="BtnMoveRegistration" Margin="0 6 0 0" Padding="6 0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		</Grid>
+	</Viewbox>
+</Page>

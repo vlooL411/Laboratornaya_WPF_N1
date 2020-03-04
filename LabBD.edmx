@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LaboratornayN1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Lids">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberPhoneClient" Type="nvarchar" MaxLength="30" />
+          <Property Name="RateID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="DateCreateLid" Type="datetime" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="DateCallLid" Type="datetime" />
+          <Property Name="DurationCall" Type="int" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkWithObjections" Type="float" />
+          <Property Name="MasteringTheSkillsOfSales" Type="float" />
+          <Property Name="KnowledgeOfСompanysProducts" Type="float" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="45" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="120" />
+          <Property Name="RateID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Lids_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1" />
+          <End Role="Lids" Type="Self.Lids" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lids">
+              <PropertyRef Name="RateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lids_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Lids" Type="Self.Lids" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lids">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaboratornayN1ModelStoreContainer">
+          <EntitySet Name="Lids" EntityType="Self.Lids" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rate" EntityType="Self.Rate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Lids_Rate" Association="Self.FK_Lids_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="Lids" EntitySet="Lids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lids_User" Association="Self.FK_Lids_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Lids" EntitySet="Lids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Rate" Association="Self.FK_User_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaboratornayN1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Lid">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberPhoneClient" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="RateID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="DateCreateLid" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="DateCallLid" Type="DateTime" Precision="3" />
+          <Property Name="DurationCall" Type="Int32" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_Lids_Rate" FromRole="Lids" ToRole="Rate" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Lids_User" FromRole="Lids" ToRole="User" />
+          <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkWithObjections" Type="Double" />
+          <Property Name="MasteringTheSkillsOfSales" Type="Double" />
+          <Property Name="KnowledgeOfСompanysProducts" Type="Double" />
+          <NavigationProperty Name="Lids" Relationship="Self.FK_Lids_Rate" FromRole="Rate" ToRole="Lids" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Rate" FromRole="Rate" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="FIO" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="RateID" Type="Int32" />
+          <NavigationProperty Name="Lids" Relationship="Self.FK_Lids_User" FromRole="User" ToRole="Lids" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_User_Rate" FromRole="User" ToRole="Rate" />
+        </EntityType>
+        <Association Name="FK_Lids_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1" />
+          <End Role="Lids" Type="Self.Lid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lids">
+              <PropertyRef Name="RateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lids_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Lids" Type="Self.Lid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lids">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaboratornayN1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lids" EntityType="Self.Lid" />
+          <EntitySet Name="Rates" EntityType="Self.Rate" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Lids_Rate" Association="Self.FK_Lids_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="Lids" EntitySet="Lids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lids_User" Association="Self.FK_Lids_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Lids" EntitySet="Lids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Rate" Association="Self.FK_User_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LaboratornayN1ModelStoreContainer" CdmEntityContainer="LaboratornayN1Entities">
+          <EntitySetMapping Name="Lids">
+            <EntityTypeMapping TypeName="LaboratornayN1Model.Lid">
+              <MappingFragment StoreEntitySet="Lids">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NumberPhoneClient" ColumnName="NumberPhoneClient" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DateCreateLid" ColumnName="DateCreateLid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCallLid" ColumnName="DateCallLid" />
+                <ScalarProperty Name="DurationCall" ColumnName="DurationCall" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rates">
+            <EntityTypeMapping TypeName="LaboratornayN1Model.Rate">
+              <MappingFragment StoreEntitySet="Rate">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkWithObjections" ColumnName="WorkWithObjections" />
+                <ScalarProperty Name="MasteringTheSkillsOfSales" ColumnName="MasteringTheSkillsOfSales" />
+                <ScalarProperty Name="KnowledgeOfСompanysProducts" ColumnName="KnowledgeOfСompanysProducts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LaboratornayN1Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

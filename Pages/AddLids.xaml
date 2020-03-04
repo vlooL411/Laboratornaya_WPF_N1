@@ -1,0 +1,110 @@
+﻿<Page x:Class="Laboratornaya_WPF_N1.Pages.AddLid"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" d:DesignHeight="240" d:DesignWidth="480"
+      Title="Страница лида">
+	<Viewbox>
+		<Grid Margin="10 5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2.5*"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition MaxHeight="30"/>
+				<RowDefinition/>
+				<RowDefinition MaxHeight="20"/>
+			</Grid.RowDefinitions>
+			<Label Content="Добавление лида" HorizontalAlignment="Center"/>
+			<Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.3*"/>
+					<ColumnDefinition Width="0.7*" MinWidth="120"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Label Content="Номер телефона: "/>
+				<TextBox x:Name="Phone" MaxLength="30" Text="{Binding NumberPhoneClient, StringFormat=\{0:D\}}" MaxWidth="150" Grid.Column="1" VerticalAlignment="Center" MinWidth="100"/>
+				<Label Content="Время звонка: " Grid.Row="1"/>
+				<TextBox x:Name="Duration" MaxLength="5" Text="{Binding DurationCall, StringFormat=\{0:D\}}" MaxWidth="150" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MinWidth="100"/>
+				<Label Content="Статус: " Grid.Row="2"/>
+				<CheckBox x:Name="Status" MaxWidth="150" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<Label Content="Дата создания: " Grid.Row="3"/>
+				<TextBox x:Name="DateCreateLid" IsReadOnlyCaretVisible="True" MaxWidth="150" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" MinWidth="100"/>
+				<Label Content="Дата звонка: " Grid.Row="4"/>
+				<TextBox x:Name="DateCallLid" Text="{Binding DateCallLid, StringFormat=\{0:G\}}" MaxWidth="150" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" MinWidth="100"/>
+				<Label Content="Привязанный пользовтель: " Grid.Row="5"/>
+				<ComboBox x:Name="BindingUser" MaxWidth="150" SelectionChanged="BindingUser_SelectionChanged" Margin="2 4" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Username}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<GroupBox Grid.Row="6" Grid.ColumnSpan="2">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*"/>
+							<ColumnDefinition Width="3*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Label Content="Рейтинг:"/>
+						<Label Margin="5 0 0 0" FontSize="10" Content="Работа с возражениями:" Grid.Row="1"/>
+						<TextBox x:Name="WorkWithObjections"  Text="{Binding Rate.WorkWithObjections, StringFormat=\{0:F\}}" MaxWidth="150" FontSize="10" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MinWidth="100"/>
+						<Label Margin="5 0 0 0" FontSize="10" Content="Владение навыками продаж:" Grid.Row="2"/>
+						<TextBox x:Name="MasteringTheSkillsOfSales" Text="{Binding Rate.MasteringTheSkillsOfSales, StringFormat=\{0:F\}}" MaxWidth="150" FontSize="10" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" MinWidth="100"/>
+						<Label Margin="5 0 0 0" FontSize="10" Content="Знание продуктов компании:" Grid.Row="3"/>
+						<TextBox x:Name="KnowledgeOfСompanysProducts" Text="{Binding Rate.KnowledgeOfСompanysProducts, StringFormat=\{0:F\}}" MaxWidth="150" FontSize="10" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" MinWidth="100"/>
+					</Grid>
+				</GroupBox>
+			</Grid>
+			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Button Content="Начать звонок" Click="BtnBeginLids_Click" Margin="5" MaxHeight="30" MaxWidth="100" x:Name="BtnBeginLids"/>
+				<Button Content="Добавить лид" Click="BtnAddLids_Click" Margin="5" MaxHeight="30" MaxWidth="100" x:Name="BtnShowLids"/>
+				<Button Content="Завершить без сохранения" Click="BtnEndWithoutSaveLids_Click" Margin="5" MaxHeight="20" MaxWidth="160" x:Name="BtnEndWithoutSaveLids"/>
+				<Button Content="Завершить звонок" Click="BtnEndLids_Click" Visibility="Collapsed" Margin="5" MaxHeight="30" MaxWidth="130" x:Name="BtnEndLids"/>
+			</StackPanel>
+			<StackPanel Grid.Row="1" Grid.Column="1">
+				<Label Content="Комментарий:"/>
+				<TextBox x:Name="Comment" TextWrapping="Wrap" MaxLength="200" Margin="10 2 5 2" MinHeight="100" MinWidth="220" MaxWidth="270" HorizontalAlignment="Left"/>
+				<Button Click="FindLidOnNumber_Click" Content="Найти по номеру" Margin="5 2" Padding="5 2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+				<DataGrid x:Name="LidCalls" MaxWidth="450" Margin="5 2" AutoGenerateColumns="False" IsReadOnly="True" Height="150">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="User" Binding="{Binding User.Username}" Width="120"/>
+						<DataGridTextColumn Header="Дата звонка" Binding="{Binding DateCallLid}" Width="130"/>
+						<DataGridTextColumn Header="Телефон" Binding="{Binding NumberPhoneClient}" Width="110"/>
+						<DataGridTemplateColumn Header="Статус">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<Border x:Name="border"/>
+									<DataTemplate.Triggers>
+										<DataTrigger Binding="{Binding Status}" Value="1">
+											<Setter TargetName="border" Property="Background" Value="Green"/>
+										</DataTrigger>
+										<DataTrigger Binding="{Binding Status}" Value="0">
+											<Setter TargetName="border" Property="Background" Value="Red"/>
+										</DataTrigger>
+									</DataTemplate.Triggers>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</StackPanel>
+		</Grid>
+	</Viewbox>
+</Page>
